@@ -1,18 +1,23 @@
 import { useEffect, useState } from 'react';
-import './App.css';
+import styles from  './App.module.css';
+import Header from './components/Header';
+import Heading from './components/Heading';
+import useFetch from './hooks/useFetch';
+
+interface Item {
+  id: number;
+  name: string;
+}
 
 function App() {
-  const [items, setItems] = useState(null);
-
-  useEffect(() => {
-    fetch('/items')
-      .then(res => res.json())
-      .then(data => setItems(data.message));
-  }, []);
+  const { response: items } = useFetch('/items');
 
   return (
-    <div className="App">
-      <h1>Task Time Estimator</h1>
+    <div className={styles.app}>
+      <Header>
+        <Heading>Task Time Estimator</Heading>
+        {items && Object.keys(items).map((key, index) => <div key={items[key].id}>{items[key].name}</div>)}
+      </Header>
     </div>
   );
 }

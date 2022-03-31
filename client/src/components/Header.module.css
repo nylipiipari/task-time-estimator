@@ -1,0 +1,14 @@
+:root {
+    --slate: #333;
+    --color-primary: var(--slate);
+}
+
+.appHeader {
+    background: var(--color-primary);
+    color: #fff;
+    padding: 1.5rem;
+}
+
+.appName {
+    margin: 0;
+}
